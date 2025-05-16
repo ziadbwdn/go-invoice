@@ -4,7 +4,17 @@ A comprehensive invoice management system built with Go, Gin, and GORM.
 
 ## Overview
 
-Invoice-Go is a robust RESTful API service designed to manage invoices, payments, companies, products, and orders. The system provides endpoints for creating and managing invoices, tracking payments, and generating reports.
+Invoice-Go is a comprehensive invoice management system designed to streamline the creation, tracking, and management of invoices, orders, and payments. Built with Golang and Gin framework, it provides a robust backend infrastructure with a well-designed relational database and intuitive RESTful API endpoints.
+
+## Features
+
+- **Company & Address Management**: Track customers, vendors, and their multiple addresses
+- **Product & Inventory Management**: Manage products, services, and stock levels
+- **Order Processing**: Create and track orders with line items
+- **Invoice Generation**: Create professional invoices with automatic calculations
+- **Payment Tracking**: Record and monitor payment status
+- **File Management**: Upload and serve product images
+- **Comprehensive Reporting**: Generate detailed reports on invoices and orders
 
 ## Prerequisites
 
@@ -41,6 +51,28 @@ Invoice-Go is a robust RESTful API service designed to manage invoices, payments
 │   └── products
 └── utils
     └── utils.go         # Helper functions and utilities
+```
+
+## Database Design
+
+### Entity Relationship Diagram
+
+```
++-------------+     +------------+     +----------+     +-------------+
+|  Companies  |-----| Addresses  |     |  Items   |     |   Orders    |
++-------------+     +------------+     +----------+     +-------------+
+       |                                    |                 |
+       |                                    |                 |
+       v                                    v                 v
++-------------+     +---------------+     +-------------+
+|  Invoices   |-----| InvoiceItems |-----| OrderItems  |
++-------------+     +---------------+     +-------------+
+       |
+       |
+       v
++-------------+
+|  Payments   |
++-------------+
 ```
 
 ## Installation
@@ -160,9 +192,49 @@ If you encounter issues starting the application:
 3. Verify that all required Go modules are installed
 4. Check for port conflicts if the server fails to start
 
+## Postman Collection
+
+A Postman collection is available in the `docs/` directory for testing the API endpoints. Import the collection into Postman to get started quickly with testing.
+
+## Example Invoice
+
+Below is an example of how invoices are formatted:
+
+```
++-----------------------------------------------------------------------------------------------+
+|**INVOICE**                                                                                    |
+|                                               From     |Furnitura Romana                      |
+|                                                        |32 St Maximius Place                  |
+|                                                        |Liverpool LG1 2ER                     |
+|                                                        |United Kingdom                        |
+|                                                                                               |
+|Invoice ID | 0031                           For         |YHA Canterburry Hostel                |
+|Issue Date | 02/09/2019                                 |54 New Dover Road                     |
+|Due Date   | 02/09/2019 (upon receipt)                  |Canterburry CT1 3DT                   |
+|Subject    | Autumn Marketing Campaign                  |United Kingdom                        |
+|                                                                                               |
+|                                                                                               |
+|+---------------+---------------+---------------+---------------+--------------+               |
+||Item Type      |Description    |Quantity       |Unit Price     |Amount        |               |
+|+---------------+---------------+---------------+---------------+--------------+               |
+||Service        |Design         |44.00          |£240.00        |£10,560.00    |               |
+||Service        |Development    |59.00          |£310.00        |£18,290.00    |               |
+||Service        |Meetings       |5.50           |£70.00         |£385.00       |               |
+|+---------------+---------------+---------------+---------------+--------------+               |
+|                                                                                               |
+|                                                                                               |
+|                                           Subtotal        |£29,235.00                         |
+|                                           Tax (10%)       |£2,923.50                          |
+|                                           Payments        |-£32,158.50                        |
+|                                                                                               |
+|                                           **Amount Due**  |£0.00                              |
+|                                                                                               |
++-----------------------------------------------------------------------------------------------+
+```
+
 ## License
 
-MIT License
+This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## Contributors
 

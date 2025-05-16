@@ -162,8 +162,8 @@ If you encounter issues starting the application:
 
 ## License
 
-[Your License Here]
+MIT License
 
 ## Contributors
 
-[Your Name and other contributors]
+Muhammad Ziad
